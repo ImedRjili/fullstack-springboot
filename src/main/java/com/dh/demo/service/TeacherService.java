@@ -2,6 +2,7 @@ package com.dh.demo.service;
 
 import com.dh.demo.domain.Teacher;
 import com.dh.demo.repository.TeacherRepository;
+import com.dh.demo.web.TeacherController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +30,14 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
 
-    public void addTeacher(Teacher newTeacher){
+    public void addTeacher(TeacherController.TeacherRequestDTO newTeacher){
         //TODO add into database
-        teacherRepository.save(newTeacher);
-        System.out.println("The name of teacher is: "+ newTeacher.getName() +" with id "+newTeacher.getId());
+        Teacher teacher = new Teacher();
+        teacher.setCi(newTeacher.getCi());
+        teacher.setProffesion(newTeacher.getProffesion());
+        teacher.setName(newTeacher.getName());
+        teacherRepository.save(teacher);
+        System.out.println("The name of teacher is: "+ newTeacher.getName() +" with id "+teacher.getId());
     }
 
     public Teacher findByID(String id){

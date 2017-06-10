@@ -28,7 +28,7 @@ public class TeacherController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addTeacher(@RequestBody Teacher newTeacher){
+    public void addTeacher(@RequestBody TeacherRequestDTO newTeacher){
         teacherService.addTeacher(newTeacher);
     }
 
@@ -45,5 +45,36 @@ public class TeacherController {
     @RequestMapping(method = RequestMethod.DELETE)
     public void deleteTeacher(@RequestBody String id){
         teacherService.deleteTeacherByID(id);
+    }
+
+    public static class TeacherRequestDTO{
+
+        private String name;
+        private long ci;
+        private String proffesion;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public long getCi() {
+            return ci;
+        }
+
+        public void setCi(long ci) {
+            this.ci = ci;
+        }
+
+        public String getProffesion() {
+            return proffesion;
+        }
+
+        public void setProffesion(String proffesion) {
+            this.proffesion = proffesion;
+        }
     }
 }
